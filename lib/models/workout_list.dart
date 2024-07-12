@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:newfit/models/workout_model.dart';
 
-class WorkoutList{
+class WorkoutList extends ChangeNotifier{
 final List<Workout> workout=[
-Workout(name: "Inchworms", description: "Start with your feet shoulder width apart. Bend your body and walk your hands in front of your as far as you can, then walk your hands back. Repeat the exercise.", gifUrl: "", times: 20,),
+Workout(name: "Lunges", description: "Stand with your feet shoulder width apart and your hands on your hips. Take a step forward with your right leg and lower your body until your right thigh is parallel with the floor. Then return and switch to the other leg. This exercise strengthens the quadriceps, gluteus maximus and hamstrings.", gifUrl: "", times: 20,),
 Workout(name: "Squats", description: "Stand with your feet shoulder width apart and your armas stretched forward, then lower your body until your things are parallel with the floor. Your knees should be extended in the same direction as your toes. Return to the start position and do the next rep. This works the thighs, hips buttocks, quads, hamstrings and lower body.", gifUrl: "", times: 20,),
 Workout(name: "High steeping", description: "Run in place while pulling your knees as high as possible with each step. Keep your upper body upright during this exercise.", gifUrl: "", times: 20,),
 Workout(name: "Push-ups", description: "Lay prone on the ground with arms supporting your body. Keep your body straight while raising and lowering your body with your arms. This exercise works the chest, shoulders, triceps, back and legs.", gifUrl: "", times: 20,),
@@ -16,5 +17,9 @@ Workout(name: "Bicycle crunches", description: "Lie on the floor with your hands
 Workout(name: "Flutter kicks", description: "Lie on your back with your arms at your sides. Lift your legs and keep them as straight as you can. Then quickly raise your right leg up, and simultaneously lower your left leg. Switch legs and repeat.", gifUrl: "", times: 20,),
 Workout(name: "Abdominal crunches", description: "Lie on your back with your knees bent and your ars stretched forward. Then lift your upper body off the floor. Hold for o few seconds and lowly return. It primarily works the rectus abdominis muscle and the obliques.", gifUrl: "", times: 20,),
 Workout(name: "Heel touch", description: "Lie on the ground with your legs bent and your arms by your sides. Slightly lift your upper body og the floor and make your hands alternately reach your heels.", gifUrl: "", times: 20,),
+Workout(name: "Leg raises", description: "Lie down on your back, and put your hands beneath your hips for support. Then lift your legs up until they form a right angle with the floor. Slowly bring your legs backs down and repeat the exercise", gifUrl: "", times: 20,),
+Workout(name: "Heel touch", description: "Lie on the ground with your legs bent and your arms by your sides. Slightly lift your upper body og the floor and make your hands alternately reach your heels.", gifUrl: "", times: 20,),
 ];
+
+List<Workout> get exercise=>workout;
 }

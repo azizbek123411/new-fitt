@@ -39,6 +39,7 @@ dependencies:
   smooth_page_indicator: ^1.2.0
   vertical_weight_slider: ^2.6.0
   flutter_iconly: ^1.0.2
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
