@@ -3,8 +3,11 @@ import 'package:newfit/config/font_size.dart';
 import 'package:newfit/config/text_styles.dart';
 import 'package:newfit/models/workout_list.dart';
 import 'package:newfit/models/workout_model.dart';
+import 'package:newfit/utils/screen_utils.dart';
 import 'package:newfit/widgets/workout_tile.dart';
 import 'package:provider/provider.dart';
+
+import '../../utils/app_padding.dart';
 
 class PlanPage extends StatefulWidget {
   const PlanPage({super.key});
@@ -28,14 +31,17 @@ final workouts=context.watch<WorkoutList>().exercise;
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: workouts.length,
-        itemBuilder: (context, index) {
-          final exercise = workouts[index];
-          return WorkoutTile(
-            workout: exercise,
-          );
-        },
+      body: Padding(
+        padding: Dis.only(lr: 10.w,tb: 5.h),
+        child: ListView.builder(
+          itemCount: workouts.length,
+          itemBuilder: (context, index) {
+            final exercise = workouts[index];
+            return WorkoutTile(
+              workout: exercise,
+            );
+          },
+        ),
       ),
     );
   }
