@@ -3,6 +3,8 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:newfit/models/workout_list.dart';
 import 'package:newfit/pages/starting_page/introduce_page.dart';
 import 'package:newfit/pages/starting_page/scroll_pages/choose_plan.dart';
+import 'package:newfit/pages/starting_page/scroll_pages/knee_issue.dart';
+import 'package:newfit/pages/starting_page/scroll_pages/plank.dart';
 import 'package:newfit/pages/starting_page/scroll_pages/push_ups.dart';
 import 'package:newfit/pages/starting_page/scroll_pages/scroll_page.dart';
 import 'package:newfit/pages/starting_page/splash_page.dart';
@@ -21,11 +23,18 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => CheckBox(),
         ),
-        ChangeNotifierProvider(create: (context)=>CheckBoxPushUps(),
+        ChangeNotifierProvider(
+          create: (context) => CheckBoxPushUps(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CheckBoxPlanks(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CheckBoxKnee(),
         ),
       ],
       child: const MyApp(),
-      ),
+    ),
   );
 }
 

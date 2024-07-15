@@ -63,12 +63,12 @@ class _ScrollPageState extends State<ScrollPage> {
         },
         controller: controller,
         children: [
-          pages[0],
-          pages[1],
-          pages[2],
-          pages[3],
-          pages[4],
-          pages[5],
+       pages[0],
+       pages[1],
+       pages[2],
+       pages[3],
+       pages[4],
+       pages[5],
         ],
       ),
       floatingActionButton: GestureDetector(

@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:newfit/utils/screen_utils.dart';
+import 'package:provider/provider.dart';
 
 import '../../../config/font_size.dart';
 import '../../../config/text_styles.dart';
@@ -16,13 +16,37 @@ class KneeIssue extends StatefulWidget {
   State<KneeIssue> createState() => _KneeIssueState();
 }
 
-class _KneeIssueState extends State<KneeIssue> {
+class CheckBoxKnee extends ChangeNotifier {
   bool value1 = false;
   bool value2 = false;
   bool value3 = false;
 
+  bool get isChecked1 => value1;
+
+  bool get isChecked2 => value2;
+
+  bool get isChecked3 => value3;
+
+  void toggleCheckbox1(bool value) {
+    value1 = value;
+    notifyListeners();
+  }
+
+  void toggleCheckbox2(bool value) {
+    value2 = value;
+    notifyListeners();
+  }
+
+  void toggleCheckbox3(bool value) {
+    value3 = value;
+    notifyListeners();
+  }
+}
+
+class _KneeIssueState extends State<KneeIssue> {
   @override
   Widget build(BuildContext context) {
+    final checkBoxProvider = Provider.of<CheckBoxKnee>(context);
     return Scaffold(
       body: SizedBox(
         height: double.infinity,
@@ -46,18 +70,16 @@ class _KneeIssueState extends State<KneeIssue> {
               HBox(40.h),
               StartingListTile(
                 onChanged: (bool? val) {
-                  if (value2 == true) {
-                    setState(() {
-                      value2 = !value2;
-                    });
-                  } else if (value3 == true) {
-                    setState(() {
-                      value3 = !value3;
-                    });
+                  if (checkBoxProvider.value2 == true) {
+                    checkBoxProvider.toggleCheckbox2(
+                      !checkBoxProvider.value2,
+                    );
+                  } else if (checkBoxProvider.value3 == true) {
+                    checkBoxProvider.toggleCheckbox3(
+                      !checkBoxProvider.value3,
+                    );
                   }
-                  setState(() {
-                    value1 = val!;
-                  });
+                  checkBoxProvider.toggleCheckbox1(val!);
                 },
                 title: "No, I'm fine",
                 subtitle: 'I do not any issues',
@@ -65,23 +87,21 @@ class _KneeIssueState extends State<KneeIssue> {
                   "assets/svg/iam.svg",
                   height: 50.h,
                 ),
-                val: value1,
+                val: checkBoxProvider.value1,
               ),
               HBox(20.h),
               StartingListTile(
                 onChanged: (bool? val) {
-                  if (value1 == true) {
-                    setState(() {
-                      value1 = !value1;
-                    });
-                  } else if (value3 == true) {
-                    setState(() {
-                      value3 = !value3;
-                    });
+                  if (checkBoxProvider.value1 == true) {
+                    checkBoxProvider.toggleCheckbox1(
+                      !checkBoxProvider.value1,
+                    );
+                  } else if (checkBoxProvider.value3 == true) {
+                    checkBoxProvider.toggleCheckbox3(
+                      !checkBoxProvider.value3,
+                    );
                   }
-                  setState(() {
-                    value2 = val!;
-                  });
+                  checkBoxProvider.toggleCheckbox2(val!);
                 },
                 title: 'Low impact',
                 subtitle: 'Friendly to overweight people',
@@ -89,23 +109,21 @@ class _KneeIssueState extends State<KneeIssue> {
                   "assets/svg/overweight.svg",
                   height: 50.h,
                 ),
-                val: value2,
+                val: checkBoxProvider.value2,
               ),
               HBox(20.h),
               StartingListTile(
                 onChanged: (bool? val) {
-                  if (value2 == true) {
-                    setState(() {
-                      value2 = !value2;
-                    });
-                  } else if (value1 = true) {
-                    setState(() {
-                      value1 = !value1;
-                    });
+                  if (checkBoxProvider.value2 == true) {
+                    checkBoxProvider.toggleCheckbox2(
+                      !checkBoxProvider.value2,
+                    );
+                  } else if (checkBoxProvider.value1 == true) {
+                    checkBoxProvider.toggleCheckbox1(
+                      !checkBoxProvider.value1,
+                    );
                   }
-                  setState(() {
-                    value3 = val!;
-                  });
+                  checkBoxProvider.toggleCheckbox3(val!);
                 },
                 title: 'No jumping',
                 subtitle: 'No noise, apartment friendly',
@@ -113,7 +131,7 @@ class _KneeIssueState extends State<KneeIssue> {
                   "assets/images/knee.png",
                   height: 50.h,
                 ),
-                val: value3,
+                val: checkBoxProvider.value3,
               ),
             ],
           ),
