@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hive/hive.dart';
 import 'package:newfit/utils/screen_utils.dart';
 import 'package:provider/provider.dart';
 
@@ -85,9 +84,9 @@ class _ChoosePlanState extends State<ChoosePlan> {
             StartingListTile(
               onChanged: (bool? val) {
                 if(checkBoxProvider.value2==true){
-                 checkBoxProvider.toggleCheckbox2(val!);
+                 checkBoxProvider.toggleCheckbox2(!checkBoxProvider.value2);
                 }else if(checkBoxProvider.value3==true){
-                  checkBoxProvider.toggleCheckbox3(val!);
+                  checkBoxProvider.toggleCheckbox3(!checkBoxProvider.value3);
                 }
                 checkBoxProvider.toggleCheckbox1(val!);
 
@@ -100,15 +99,15 @@ class _ChoosePlanState extends State<ChoosePlan> {
               ),
               title: 'Beginner',
               subtitle: "5-10 min a day",
-              val:checkBoxProvider.isChecked1,
+              val:checkBoxProvider.value1,
             ),
             HBox(15.h),
             StartingListTile(
               onChanged: (bool? val) {
                 if(checkBoxProvider.value1==true){
-                  checkBoxProvider.toggleCheckbox1(val!);
+                  checkBoxProvider.toggleCheckbox1(!checkBoxProvider.value1);
                 }else if(checkBoxProvider.value3==true){
-                  checkBoxProvider.toggleCheckbox3(val!);
+                  checkBoxProvider.toggleCheckbox3(!checkBoxProvider.value3);
                 }
                 checkBoxProvider.toggleCheckbox2(val!);
               },
@@ -135,9 +134,9 @@ class _ChoosePlanState extends State<ChoosePlan> {
               val: checkBoxProvider.value3,
               onChanged: (bool? val) {
                 if(checkBoxProvider.value2==true){
-                  checkBoxProvider.toggleCheckbox2(val!);
+                  checkBoxProvider.toggleCheckbox2(!checkBoxProvider.value2);
                 }else if(checkBoxProvider.value1==true){
-                  checkBoxProvider.toggleCheckbox1(val!);
+                  checkBoxProvider.toggleCheckbox1(!checkBoxProvider.value1);
                 }
                 checkBoxProvider.toggleCheckbox3(val!);
               },

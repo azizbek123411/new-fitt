@@ -3,6 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:newfit/models/workout_list.dart';
 import 'package:newfit/pages/starting_page/introduce_page.dart';
 import 'package:newfit/pages/starting_page/scroll_pages/choose_plan.dart';
+import 'package:newfit/pages/starting_page/scroll_pages/push_ups.dart';
 import 'package:newfit/pages/starting_page/scroll_pages/scroll_page.dart';
 import 'package:newfit/pages/starting_page/splash_page.dart';
 import 'package:newfit/pages/workout_pages/main_navbar.dart';
@@ -19,6 +20,8 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => CheckBox(),
+        ),
+        ChangeNotifierProvider(create: (context)=>CheckBoxPushUps(),
         ),
       ],
       child: const MyApp(),

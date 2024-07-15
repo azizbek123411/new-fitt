@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:newfit/utils/screen_utils.dart';
+import 'package:provider/provider.dart';
 
 import '../../../config/font_size.dart';
 import '../../../config/text_styles.dart';
@@ -15,13 +15,37 @@ class PushUps extends StatefulWidget {
   State<PushUps> createState() => _PushUpsState();
 }
 
-class _PushUpsState extends State<PushUps> {
+class CheckBoxPushUps extends ChangeNotifier {
   bool value1 = false;
   bool value2 = false;
   bool value3 = false;
 
+  bool get isChecked1 => value1;
+
+  bool get isChecked2 => value2;
+
+  bool get isChecked3 => value3;
+
+  void toggleCheckbox1(bool value) {
+    value1 = value;
+    notifyListeners();
+  }
+
+  void toggleCheckbox2(bool value) {
+    value2 = value;
+    notifyListeners();
+  }
+
+  void toggleCheckbox3(bool value) {
+    value3 = value;
+    notifyListeners();
+  }
+}
+
+class _PushUpsState extends State<PushUps> {
   @override
   Widget build(BuildContext context) {
+    final checkBoxProvider = Provider.of<CheckBoxPushUps>(context);
     return Scaffold(
       body: Padding(
         padding: Dis.only(
@@ -44,20 +68,18 @@ class _PushUpsState extends State<PushUps> {
             PushUpsListTile(
               text: "0~10 repeats",
               onChanged: (bool? val) {
-                if (value2 == true) {
-                  setState(() {
-                    value2 = !value2;
-                  });
-                } else if (value3 == true) {
-                  setState(() {
-                    value3 = !value3;
-                  });
+                if (checkBoxProvider.value2 == true) {
+                  checkBoxProvider.toggleCheckbox2(
+                    !checkBoxProvider.value2,
+                  );
+                } else if (checkBoxProvider.value3 == true) {
+                  checkBoxProvider.toggleCheckbox3(
+                    !checkBoxProvider.value3,
+                  );
                 }
-                setState(() {
-                  value1 = val!;
-                });
+                checkBoxProvider.toggleCheckbox1(val!);
               },
-              value: value1,
+              value: checkBoxProvider.value1,
             ),
             HBox(
               20.h,
@@ -68,21 +90,18 @@ class _PushUpsState extends State<PushUps> {
             PushUpsListTile(
               text: "10~20 repeats",
               onChanged: (bool? val) {
-                if (value1 == true) {
-                  setState(() {
-                    value1 = !value1;
-                  });
-                } else if (value3 == true) {
-                  setState(() {
-                    value3 = !value3;
-                  });
+                if (checkBoxProvider.value1 == true) {
+                  checkBoxProvider.toggleCheckbox1(
+                    !checkBoxProvider.value1,
+                  );
+                } else if (checkBoxProvider.value3 == true) {
+                  checkBoxProvider.toggleCheckbox3(
+                    !checkBoxProvider.value3,
+                  );
                 }
-
-                setState(() {
-                  value2 = val!;
-                });
+                checkBoxProvider.toggleCheckbox2(val!);
               },
-              value: value2,
+              value: checkBoxProvider.value2,
             ),
             HBox(
               20.h,
@@ -93,20 +112,18 @@ class _PushUpsState extends State<PushUps> {
             PushUpsListTile(
               text: "Over 20 repeats",
               onChanged: (bool? val) {
-                if (value2 == true) {
-                  setState(() {
-                    value2 = !value2;
-                  });
-                } else if (value1 == true) {
-                  setState(() {
-                    value1 = !value1;
-                  });
+                if (checkBoxProvider.value2 == true) {
+                  checkBoxProvider.toggleCheckbox2(
+                    !checkBoxProvider.value2,
+                  );
+                } else if (checkBoxProvider.value1 == true) {
+                  checkBoxProvider.toggleCheckbox1(
+                    !checkBoxProvider.value1,
+                  );
                 }
-                setState(() {
-                  value3 = val!;
-                });
+                checkBoxProvider.toggleCheckbox3(val!);
               },
-              value: value3,
+              value: checkBoxProvider.value3,
             ),
             HBox(
               20.h,
