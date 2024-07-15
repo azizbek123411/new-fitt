@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:newfit/utils/screen_utils.dart';
 import 'package:vertical_weight_slider/vertical_weight_slider.dart';
 
@@ -8,7 +9,8 @@ import '../../../config/text_styles.dart';
 import '../../../utils/sboxes.dart';
 
 class YourHeight extends StatefulWidget {
-  const YourHeight({super.key});
+  double initialHeight=160;
+   YourHeight({super.key});
 
   @override
   State<YourHeight> createState() => _YourHeightState();
@@ -16,25 +18,28 @@ class YourHeight extends StatefulWidget {
 
 class _YourHeightState extends State<YourHeight> {
   late WeightSliderController heightController;
-  double initialHeight = 160;
+
 
   @override
   void initState() {
     super.initState();
     heightController = WeightSliderController(
-      initialWeight: initialHeight,
+      initialWeight: widget.initialHeight,
       maxWeight: 250,
       minWeight: 100,
-
       interval: 1.0,
     );
   }
+
+
+
 
   @override
   void dispose() {
     heightController.dispose();
     super.dispose();
   }
+  final box=Hive.box('planBox');
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +59,7 @@ class _YourHeightState extends State<YourHeight> {
                   color: Colors.black,),
             ),
             Text(
-              "${initialHeight.toStringAsFixed(1)} sm",
+              "${widget.initialHeight.toStringAsFixed(1)} sm",
               style: AppTextStyle.instance.w900.copyWith(
                 fontSize: FontSizeConst.instance.extraLargeFont,
               ),
@@ -64,7 +69,7 @@ class _YourHeightState extends State<YourHeight> {
               children: [
                 Image.asset(
                   "assets/images/black_guy-removebg-preview.png",
-                  height: initialHeight+305,
+                  height: widget.initialHeight+305,
                 ),
                 SizedBox(
                   width: 50.h,
@@ -90,8 +95,11 @@ class _YourHeightState extends State<YourHeight> {
                       controller: heightController,
                       onChanged: (value) {
                         setState(() {
-                          initialHeight = value;
+                          widget.initialHeight = value;
                         });
+                        box.put('height', widget.initialHeight);
+
+                        print(box.get('height'));
                       }),
                 )
               ],

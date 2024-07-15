@@ -1,7 +1,8 @@
 import 'dart:async';
 
-
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:newfit/pages/workout_pages/main_navbar.dart';
 import 'package:newfit/utils/screen_utils.dart';
 
 import '../../config/font_size.dart';
@@ -18,13 +19,18 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  final box = Hive.box('planBox');
+
   @override
   void initState() {
     super.initState();
     Timer(
       const Duration(seconds: 2),
       () {
-        Navigator.pushReplacementNamed(context, IntroducePage.id);
+        Navigator.pushReplacementNamed(
+          context,
+          box.isEmpty ? IntroducePage.id : NavBar.id,
+        );
       },
     );
   }
@@ -58,7 +64,7 @@ class _SplashPageState extends State<SplashPage> {
             ),
             HBox(20.h),
             Padding(
-              padding: Dis.only(lr  : 70.w),
+              padding: Dis.only(lr: 70.w),
               child: LinearProgressIndicator(
                 color: Colors.teal,
                 backgroundColor: Colors.grey,

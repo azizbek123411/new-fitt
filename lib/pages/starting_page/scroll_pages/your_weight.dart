@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:newfit/utils/screen_utils.dart';
 import 'package:vertical_weight_slider/vertical_weight_slider.dart';
 
@@ -9,7 +9,8 @@ import '../../../utils/app_padding.dart';
 import '../../../utils/sboxes.dart';
 
 class YourWeight extends StatefulWidget {
-  const YourWeight({super.key});
+  double initialWeight = 50;
+   YourWeight({super.key});
 
   @override
   State<YourWeight> createState() => _YourWeightState();
@@ -17,15 +18,15 @@ class YourWeight extends StatefulWidget {
 
 class _YourWeightState extends State<YourWeight> {
   late WeightSliderController weightSliderController;
-  double initialWeight=50;
+
+
   @override
   void initState() {
     super.initState();
     weightSliderController = WeightSliderController(
-      initialWeight: initialWeight,
+      initialWeight: widget.initialWeight,
       maxWeight: 150,
       minWeight: 30,
-
       interval: 1.0,
     );
   }
@@ -35,6 +36,8 @@ class _YourWeightState extends State<YourWeight> {
     weightSliderController.dispose();
     super.dispose();
   }
+  final box=Hive.box("planBox");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,8 +49,7 @@ class _YourWeightState extends State<YourWeight> {
           children: [
             HBox(30.h),
             Padding(
-              padding: Dis.only(lr: 40.w
-              ),
+              padding: Dis.only(lr: 40.w),
               child: Text(
                 "What is your current weight?",
                 style: AppTextStyle.instance.w900.copyWith(
@@ -56,13 +58,15 @@ class _YourWeightState extends State<YourWeight> {
                 ),
                 textAlign: TextAlign.center,
               ),
-
             ),
             HBox(50.h),
-            Text("${initialWeight.toStringAsFixed(1)} kg",  style: AppTextStyle.instance.w900.copyWith(
-              fontSize: FontSizeConst.instance.extraLargeFont,
-              color: Colors.black,
-            ),),
+            Text(
+              "${widget.initialWeight.toStringAsFixed(1)} kg",
+              style: AppTextStyle.instance.w900.copyWith(
+                fontSize: FontSizeConst.instance.extraLargeFont,
+                color: Colors.black,
+              ),
+            ),
             VerticalWeightSlider(
                 height: 479.h,
                 decoration: const PointerDecoration(
@@ -86,11 +90,13 @@ class _YourWeightState extends State<YourWeight> {
                 controller: weightSliderController,
                 onChanged: (value) {
                   setState(() {
-                    initialWeight = value;
+                    widget.initialWeight = value;
                   });
+                  box.put('weight', widget.initialWeight);
+                  print(box.get('weight'),);
+                  print(box.get('height'),);
                 }),
           ],
-
         ),
       ),
     );

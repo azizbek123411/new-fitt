@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:newfit/pages/workout_pages/days_page.dart';
 import 'package:newfit/pages/workout_pages/plan_page.dart';
 import 'package:newfit/pages/workout_pages/profile_page.dart';
 
@@ -18,7 +19,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   List pages = [
-    const PlanPage(),
+    const DaysPage(),
     const ProfilePage(),
   ];
   PageController controller = PageController();

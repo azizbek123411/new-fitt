@@ -1,5 +1,6 @@
 import "dart:developer";
 import "package:flutter/material.dart";
+import "package:hive/hive.dart";
 import "package:newfit/pages/starting_page/scroll_pages/plank.dart";
 import "package:newfit/pages/starting_page/scroll_pages/push_ups.dart";
 import "package:newfit/pages/starting_page/scroll_pages/your_height.dart";
@@ -13,7 +14,8 @@ import "choose_plan.dart";
 import "knee_issue.dart";
 
 class ScrollPage extends StatefulWidget {
-  static String id="scroll";
+  static String id = "scroll";
+
   const ScrollPage({super.key});
 
   @override
@@ -27,8 +29,8 @@ class _ScrollPageState extends State<ScrollPage> {
     const ChoosePlan(),
     const PushUps(),
     const Plank(),
-    const YourHeight(),
-    const YourWeight(),
+    YourHeight(),
+    YourWeight(),
     const KneeIssue(),
   ];
 
@@ -63,41 +65,43 @@ class _ScrollPageState extends State<ScrollPage> {
         },
         controller: controller,
         children: [
-       pages[0],
-       pages[1],
-       pages[2],
-       pages[3],
-       pages[4],
-       pages[5],
+          pages[0],
+          pages[1],
+          pages[2],
+          pages[3],
+          pages[4],
+          pages[5],
         ],
       ),
       floatingActionButton: GestureDetector(
         onTap: () {
-          setState(() {
-            if (selectIndex == 0) {
-              controller.animateToPage(1,
-                  duration: const Duration(milliseconds: 200),
-                  curve: Curves.bounceIn);
-            } else if (selectIndex == 1) {
-              controller.animateToPage(2,
-                  duration: const Duration(milliseconds: 200),
-                  curve: Curves.bounceIn);
-            } else if (selectIndex == 2) {
-              controller.animateToPage(3,
-                  duration: const Duration(milliseconds: 200),
-                  curve: Curves.bounceIn);
-            } else if (selectIndex == 3) {
-              controller.animateToPage(4,
-                  duration: const Duration(milliseconds: 200),
-                  curve: Curves.bounceIn);
-            } else if (selectIndex == 4) {
-              controller.animateToPage(5,
-                  duration: const Duration(milliseconds: 200),
-                  curve: Curves.bounceIn);
-            } else if(selectIndex==5){
-              Navigator.pushReplacementNamed(context, "main");
-            }
-          });
+          setState(
+            () {
+              if (selectIndex == 0) {
+                controller.animateToPage(1,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.bounceIn);
+              } else if (selectIndex == 1) {
+                controller.animateToPage(2,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.bounceIn);
+              } else if (selectIndex == 2) {
+                controller.animateToPage(3,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.bounceIn);
+              } else if (selectIndex == 3) {
+                controller.animateToPage(4,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.bounceIn);
+              } else if (selectIndex == 4) {
+                controller.animateToPage(5,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.bounceIn);
+              } else if (selectIndex == 5) {
+                Navigator.pushReplacementNamed(context, "days");
+              }
+            },
+          );
         },
         child: Container(
           margin: Dis.only(bottom: 20.h, lr: 15.w),
