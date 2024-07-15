@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:newfit/models/workout_list.dart';
 import 'package:newfit/pages/starting_page/introduce_page.dart';
+import 'package:newfit/pages/starting_page/scroll_pages/choose_plan.dart';
 import 'package:newfit/pages/starting_page/scroll_pages/scroll_page.dart';
 import 'package:newfit/pages/starting_page/splash_page.dart';
 import 'package:newfit/pages/workout_pages/main_navbar.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  var planBox = await Hive.openBox('planBox');
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => WorkoutList(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => WorkoutList(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CheckBox(),
+        ),
+      ],
       child: const MyApp(),
-    ),
+      ),
   );
 }
 
