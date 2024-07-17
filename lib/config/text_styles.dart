@@ -41,4 +41,9 @@ class AppTextStyle {
     fontWeight: FontWeight.w300,
     fontStyle: FontStyle.normal,
   );
+  TextStyle w200 = const TextStyle(
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w300,
+    fontStyle: FontStyle.normal,
+  );
 }
