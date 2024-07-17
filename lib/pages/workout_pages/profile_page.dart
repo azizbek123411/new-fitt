@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:newfit/config/font_size.dart';
 import 'package:newfit/config/text_styles.dart';
 import 'package:newfit/utils/app_padding.dart';
+import 'package:newfit/utils/sboxes.dart';
 import 'package:newfit/utils/screen_utils.dart';
+import 'package:newfit/widgets/profile_tile.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -41,7 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Column(
                       children: [
                         Text(
-                          "Welocme, my friend ",
+                          "Welcome, my friend!",
                           style: AppTextStyle.instance.w700.copyWith(
                             fontSize: FontSizeConst.instance.mediumFont,
                           ),
@@ -49,36 +52,38 @@ class _ProfilePageState extends State<ProfilePage> {
                         Row(
                           children: [
                             Column(
-                             children: [
-                               Text(
-                                 activeDays.toString(),
-                                 style: AppTextStyle.instance.w700.copyWith(
-                                   fontSize: FontSizeConst.instance.biggestFont,
-                                 ),
-                               ),
-                               Text(
-                                 "Active Days",
-                                 style: AppTextStyle.instance.w200.copyWith(
-                                   fontSize: FontSizeConst.instance.mediumFont,
-                                 ),
-                               ),
-                             ],
+                              children: [
+                                Text(
+                                  activeDays.toString(),
+                                  style: AppTextStyle.instance.w700.copyWith(
+                                    fontSize:
+                                        FontSizeConst.instance.biggestFont,
+                                  ),
+                                ),
+                                Text(
+                                  "Active Days",
+                                  style: AppTextStyle.instance.w200.copyWith(
+                                    fontSize: FontSizeConst.instance.mediumFont,
+                                  ),
+                                ),
+                              ],
                             ),
                             Column(
-                             children: [
-                               Text(
-                                 duration.toString(),
-                                 style: AppTextStyle.instance.w700.copyWith(
-                                   fontSize: FontSizeConst.instance.biggestFont,
-                                 ),
-                               ),
-                               Text(
-                                 "     Duration",
-                                 style: AppTextStyle.instance.w200.copyWith(
-                                   fontSize: FontSizeConst.instance.mediumFont,
-                                 ),
-                               ),
-                             ],
+                              children: [
+                                Text(
+                                  duration.toString(),
+                                  style: AppTextStyle.instance.w700.copyWith(
+                                    fontSize:
+                                        FontSizeConst.instance.biggestFont,
+                                  ),
+                                ),
+                                Text(
+                                  "     Duration",
+                                  style: AppTextStyle.instance.w200.copyWith(
+                                    fontSize: FontSizeConst.instance.mediumFont,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         )
@@ -86,7 +91,81 @@ class _ProfilePageState extends State<ProfilePage> {
                     )
                   ],
                 ),
-              )
+              ),
+              HBox(30.h),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  children: [
+                    ProfileTile(
+                      title: "My Profile",
+                      leading: const Icon(
+                        Icons.person,
+                        color: Colors.grey,
+                      ),
+                      onTap: () {},
+                    ),  ProfileTile(
+                      title: "Workout settings",
+                      leading: const Icon(
+                        Icons.fitness_center,
+                        color: Colors.grey,
+                      ),
+                      onTap: () {},
+                    ),  ProfileTile(
+                      title: "Reminder",
+                      leading: const Icon(
+                        IconlyBold.notification,
+                        color: Colors.grey,
+                      ),
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+              ),
+              HBox(20.h),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  children: [
+                    ProfileTile(
+                      title: "Share",
+                      leading: const Icon(
+                        Icons.share,
+                        color: Colors.grey,
+                      ),
+                      onTap: () {},
+                    ),  ProfileTile(
+                      title: "Rate Us",
+                      leading: const Icon(
+                        Icons.email,
+                        color: Colors.grey,
+                      ),
+                      onTap: () {},
+                    ),  ProfileTile(
+                      title: "Common questions",
+                      leading: const Icon(
+                        Icons.lightbulb_rounded,
+                        color: Colors.grey,
+                      ),
+                      onTap: () {},
+                    ),
+                    ProfileTile(
+                      title: "Feedback",
+                      leading: const Icon(
+                        IconlyBold.edit,
+                        color: Colors.grey,
+                      ),
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
