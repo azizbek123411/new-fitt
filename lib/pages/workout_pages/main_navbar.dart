@@ -4,6 +4,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:newfit/pages/workout_pages/days_page.dart';
 import 'package:newfit/pages/workout_pages/plan_page.dart';
 import 'package:newfit/pages/workout_pages/profile_page.dart';
+import 'package:newfit/pages/workout_pages/reports.dart';
 
 import '../../config/font_size.dart';
 import '../../config/text_styles.dart';
@@ -20,6 +21,7 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   List pages = [
     const DaysPage(),
+    const Reports(),
     const ProfilePage(),
   ];
   PageController controller = PageController();
@@ -57,6 +59,13 @@ class _NavBarState extends State<NavBar> {
               size: 27,
             ),
             label: "Plan",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              IconlyBold.calendar,
+              size: 27,
+            ),
+            label: "Reports",
           ),
           BottomNavigationBarItem(
             icon: Icon(

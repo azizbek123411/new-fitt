@@ -44,6 +44,8 @@ dependencies:
   hive_flutter: ^1.1.0
   hive_generator: ^2.0.1
   build_runner: ^2.4.9
+  flutter_event_calendar: ^1.0.0
+  scrollable_list_tab_scroller: ^2.0.1
 
 dev_dependencies:
   flutter_test:

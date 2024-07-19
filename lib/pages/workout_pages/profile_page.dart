@@ -5,6 +5,7 @@ import 'package:newfit/config/text_styles.dart';
 import 'package:newfit/utils/app_padding.dart';
 import 'package:newfit/utils/sboxes.dart';
 import 'package:newfit/utils/screen_utils.dart';
+import 'package:newfit/widgets/clumn_data.dart';
 import 'package:newfit/widgets/profile_tile.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -50,41 +51,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Column(
-                              children: [
-                                Text(
-                                  activeDays.toString(),
-                                  style: AppTextStyle.instance.w700.copyWith(
-                                    fontSize:
-                                        FontSizeConst.instance.biggestFont,
-                                  ),
-                                ),
-                                Text(
-                                  "Active Days",
-                                  style: AppTextStyle.instance.w200.copyWith(
-                                    fontSize: FontSizeConst.instance.mediumFont,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  duration.toString(),
-                                  style: AppTextStyle.instance.w700.copyWith(
-                                    fontSize:
-                                        FontSizeConst.instance.biggestFont,
-                                  ),
-                                ),
-                                Text(
-                                  "     Duration",
-                                  style: AppTextStyle.instance.w200.copyWith(
-                                    fontSize: FontSizeConst.instance.mediumFont,
-                                  ),
-                                ),
-                              ],
-                            ),
+                           ColumnData(numb: 1, name: 'Active Days  '),
+                           ColumnData(numb: 0, name: '  Duration'),
                           ],
                         )
                       ],
