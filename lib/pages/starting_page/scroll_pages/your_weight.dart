@@ -10,7 +10,9 @@ import '../../../utils/sboxes.dart';
 
 class YourWeight extends StatefulWidget {
   double initialWeight = 50;
-   YourWeight({super.key});
+  double goalWeight = 50;
+
+  YourWeight({super.key});
 
   @override
   State<YourWeight> createState() => _YourWeightState();
@@ -18,13 +20,19 @@ class YourWeight extends StatefulWidget {
 
 class _YourWeightState extends State<YourWeight> {
   late WeightSliderController weightSliderController;
-
+  late WeightSliderController goalWeightSliderController;
 
   @override
   void initState() {
     super.initState();
     weightSliderController = WeightSliderController(
       initialWeight: widget.initialWeight,
+      maxWeight: 150,
+      minWeight: 30,
+      interval: 1.0,
+    );
+    goalWeightSliderController = WeightSliderController(
+      initialWeight: widget.goalWeight,
       maxWeight: 150,
       minWeight: 30,
       interval: 1.0,
@@ -36,7 +44,8 @@ class _YourWeightState extends State<YourWeight> {
     weightSliderController.dispose();
     super.dispose();
   }
-  final box=Hive.box("planBox");
+
+  final box = Hive.box("planBox");
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +77,7 @@ class _YourWeightState extends State<YourWeight> {
               ),
             ),
             VerticalWeightSlider(
-                height: 479.h,
+                height: 200.h,
                 decoration: const PointerDecoration(
                   width: 80.0,
                   height: 5.0,
@@ -92,9 +101,49 @@ class _YourWeightState extends State<YourWeight> {
                   setState(() {
                     widget.initialWeight = value;
                   });
-                  box.put('weight', widget.initialWeight);
-                  print(box.get('weight'),);
-                  print(box.get('height'),);
+                  box.put('weight', widget.initialWeight ?? 50);
+                }),
+            Text(
+              "What is your goal weight?",
+              style: AppTextStyle.instance.w900.copyWith(
+                fontSize: FontSizeConst.instance.extraLargeFont,
+                color: Colors.black,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              "${widget.goalWeight.toStringAsFixed(1)} kg",
+              style: AppTextStyle.instance.w900.copyWith(
+                fontSize: FontSizeConst.instance.extraLargeFont,
+                color: Colors.black,
+              ),
+            ),
+            VerticalWeightSlider(
+                height: 200.h,
+                decoration: const PointerDecoration(
+                  width: 80.0,
+                  height: 5.0,
+                  largeColor: Color(0xFF898989),
+                  mediumColor: Color(0xFFC5C5C5),
+                  smallColor: Color(0xFFF0F0F0),
+                  gap: 34.0,
+                ),
+                isVertical: false,
+                indicator: Container(
+                  height: 8.0,
+                  width: 100.0,
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: Colors.teal,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                controller: goalWeightSliderController,
+                onChanged: (value) {
+                  setState(() {
+                    widget.goalWeight = value;
+                  });
+                  box.put('goal', widget.initialWeight ?? 50);
                 }),
           ],
         ),

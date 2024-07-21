@@ -31,6 +31,7 @@ class _ScrollPageState extends State<ScrollPage> {
     const Plank(),
     YourHeight(),
     YourWeight(),
+
     const KneeIssue(),
   ];
 
@@ -71,6 +72,7 @@ class _ScrollPageState extends State<ScrollPage> {
           pages[3],
           pages[4],
           pages[5],
+
         ],
       ),
       floatingActionButton: GestureDetector(
@@ -98,7 +100,9 @@ class _ScrollPageState extends State<ScrollPage> {
                     duration: const Duration(milliseconds: 200),
                     curve: Curves.bounceIn);
               } else if (selectIndex == 5) {
-                Navigator.pushReplacementNamed(context, "days");
+                Navigator.pushReplacementNamed(context, "main");
+                Hive.box('planBox').put('scroll', 'started');
+
               }
             },
           );

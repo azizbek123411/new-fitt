@@ -97,9 +97,9 @@ class _YourHeightState extends State<YourHeight> {
                         setState(() {
                           widget.initialHeight = value;
                         });
-                        box.put('height', widget.initialHeight);
+                        box.put('height', widget.initialHeight??160);
 
-                        print(box.get('height'));
+
                       }),
                 )
               ],

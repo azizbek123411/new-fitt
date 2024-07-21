@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:newfit/config/font_size.dart';
 import 'package:newfit/config/text_styles.dart';
+import 'package:newfit/pages/workout_pages/profile_pages/myprofile.dart';
 import 'package:newfit/utils/app_padding.dart';
 import 'package:newfit/utils/sboxes.dart';
 import 'package:newfit/utils/screen_utils.dart';
@@ -53,8 +54,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                           ColumnData(numb: 1, name: 'Active Days  '),
-                           ColumnData(numb: 0, name: '  Duration'),
+                            ColumnData(numb: 1, name: 'Active Days  '),
+                            ColumnData(numb: 0, name: '  Duration'),
                           ],
                         )
                       ],
@@ -76,15 +77,24 @@ class _ProfilePageState extends State<ProfilePage> {
                         Icons.person,
                         color: Colors.grey,
                       ),
-                      onTap: () {},
-                    ),  ProfileTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>  MyProfile(),
+                          ),
+                        );
+                      },
+                    ),
+                    ProfileTile(
                       title: "Workout settings",
                       leading: const Icon(
                         Icons.fitness_center,
                         color: Colors.grey,
                       ),
                       onTap: () {},
-                    ),  ProfileTile(
+                    ),
+                    ProfileTile(
                       title: "Reminder",
                       leading: const Icon(
                         IconlyBold.notification,
@@ -110,14 +120,16 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: Colors.grey,
                       ),
                       onTap: () {},
-                    ),  ProfileTile(
+                    ),
+                    ProfileTile(
                       title: "Rate Us",
                       leading: const Icon(
                         Icons.email,
                         color: Colors.grey,
                       ),
                       onTap: () {},
-                    ),  ProfileTile(
+                    ),
+                    ProfileTile(
                       title: "Common questions",
                       leading: const Icon(
                         Icons.lightbulb_rounded,
