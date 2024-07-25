@@ -69,10 +69,10 @@ class _YourHeightState extends State<YourHeight> {
               children: [
                 Image.asset(
                   "assets/images/black_guy-removebg-preview.png",
-                  height: widget.initialHeight+305,
+                  height: widget.initialHeight+280,
                 ),
                 SizedBox(
-                  width: 50.h,
+                  width: 30.h,
                   child: VerticalWeightSlider(
                       height: 479.h,
                       decoration: const PointerDecoration(

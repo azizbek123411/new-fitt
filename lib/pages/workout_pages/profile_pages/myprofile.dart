@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:newfit/config/font_size.dart';
 import 'package:newfit/config/text_styles.dart';
 import 'package:newfit/utils/app_padding.dart';
+import 'package:newfit/utils/screen_utils.dart';
 
 class MyProfile extends StatefulWidget {
   MyProfile({super.key});
@@ -48,6 +49,7 @@ class _MyProfileState extends State<MyProfile> {
         ),
       ),
       body: Container(
+        height: 150.h,
         width: double.infinity,
         padding: Dis.all(10),
         decoration: BoxDecoration(
@@ -67,6 +69,22 @@ class _MyProfileState extends State<MyProfile> {
                 ),
               ),
               subtitle: Text(dateController.text),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.grey,
+                size: 20,
+              ),
+            ),
+            ListTile(
+              onTap: () {
+                selectData(context);
+              },
+              title: Text(
+                'Privacy & Policy',
+                style: AppTextStyle.instance.w500.copyWith(
+                  fontSize: FontSizeConst.instance.mediumFont,
+                ),
+              ),
               trailing: const Icon(
                 Icons.arrow_forward_ios,
                 color: Colors.grey,

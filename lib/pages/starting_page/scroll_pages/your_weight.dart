@@ -143,7 +143,10 @@ class _YourWeightState extends State<YourWeight> {
                   setState(() {
                     widget.goalWeight = value;
                   });
-                  box.put('goal', widget.initialWeight ?? 50);
+                  box.put(
+                    'goal',
+                    widget.goalWeight ?? 50,
+                  );
                 }),
           ],
         ),

@@ -3,6 +3,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:newfit/config/font_size.dart';
 import 'package:newfit/config/text_styles.dart';
 import 'package:newfit/pages/workout_pages/profile_pages/myprofile.dart';
+import 'package:newfit/pages/workout_pages/profile_pages/workout_screen.dart';
 import 'package:newfit/utils/app_padding.dart';
 import 'package:newfit/utils/sboxes.dart';
 import 'package:newfit/utils/screen_utils.dart';
@@ -92,7 +93,14 @@ class _ProfilePageState extends State<ProfilePage> {
                         Icons.fitness_center,
                         color: Colors.grey,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>  const WorkoutScreen(),
+                          ),
+                        );
+                      },
                     ),
                     ProfileTile(
                       title: "Reminder",
