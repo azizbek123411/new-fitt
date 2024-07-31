@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:newfit/config/font_size.dart';
 import 'package:newfit/config/text_styles.dart';
+import 'package:newfit/pages/workout_pages/profile_pages/faq_screen.dart';
+import 'package:newfit/pages/workout_pages/profile_pages/feedback.dart';
 import 'package:newfit/pages/workout_pages/profile_pages/myprofile.dart';
+import 'package:newfit/pages/workout_pages/profile_pages/reminder_page.dart';
 import 'package:newfit/pages/workout_pages/profile_pages/workout_screen.dart';
 import 'package:newfit/utils/app_padding.dart';
 import 'package:newfit/utils/sboxes.dart';
 import 'package:newfit/utils/screen_utils.dart';
 import 'package:newfit/widgets/clumn_data.dart';
 import 'package:newfit/widgets/profile_tile.dart';
+import 'package:rating_dialog/rating_dialog.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -82,7 +86,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  MyProfile(),
+                            builder: (context) => MyProfile(),
                           ),
                         );
                       },
@@ -97,7 +101,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  const WorkoutScreen(),
+                            builder: (context) => const WorkoutScreen(),
                           ),
                         );
                       },
@@ -108,7 +112,14 @@ class _ProfilePageState extends State<ProfilePage> {
                         IconlyBold.notification,
                         color: Colors.grey,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ReminderPage(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -135,7 +146,20 @@ class _ProfilePageState extends State<ProfilePage> {
                         Icons.email,
                         color: Colors.grey,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => RatingDialog(
+                            initialRating: 1,
+                            title: const Text('Rate our application'),
+                            image: const FlutterLogo(
+                              size: 40,
+                            ),
+                            submitButtonText: 'Rate',
+                            onSubmitted: (response) {},
+                          ),
+                        );
+                      },
                     ),
                     ProfileTile(
                       title: "Common questions",
@@ -143,7 +167,14 @@ class _ProfilePageState extends State<ProfilePage> {
                         Icons.lightbulb_rounded,
                         color: Colors.grey,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const FaqScreen(),
+                          ),
+                        );
+                      },
                     ),
                     ProfileTile(
                       title: "Feedback",
@@ -151,7 +182,14 @@ class _ProfilePageState extends State<ProfilePage> {
                         IconlyBold.edit,
                         color: Colors.grey,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const FeedbackScreen(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
